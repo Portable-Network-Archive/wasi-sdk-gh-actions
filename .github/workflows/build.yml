@@ -38,10 +38,20 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: |
+            ghcr.io/${{ steps.var.outputs.repository_owner }}/wasi-sdk-gh-actions
+          tags: |
+            type=semver,pattern={{version}}
+            type=sha,format=long
+
       - name: Build and Push Multi-Platform Docker Image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: "ghcr.io/${{ steps.var.outputs.repository_owner }}/wasi-sdk-gh-actions:${{ github.ref_name }}"
+          tags: ${{ steps.meta.outputs.tags }}
           platforms: linux/amd64,linux/arm64
