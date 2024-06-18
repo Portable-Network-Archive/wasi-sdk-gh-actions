@@ -48,7 +48,7 @@ jobs:
             type=ref,enable=true,priority=600,prefix=,suffix=,event=tag,value=latest
 
       - name: Build and Push Multi-Platform Docker Image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
