@@ -1,4 +1,4 @@
-FROM ghcr.io/webassembly/wasi-sdk:wasi-sdk-29
+FROM ghcr.io/webassembly/wasi-sdk:wasi-sdk-30
 
 RUN apt update && apt install -y curl nodejs npm jq && npm install -g n && n lts
 
